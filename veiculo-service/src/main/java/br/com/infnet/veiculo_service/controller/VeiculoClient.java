@@ -1,7 +1,8 @@
 package br.com.infnet.veiculo_service.controller;
 
+import br.com.infnet.veiculo_service.model.Veiculo;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.WebClient;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -11,7 +12,7 @@ public class VeiculoClient {
     private final WebClient webClient;
 
     public VeiculoClient(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/carros").build();
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/api/veiculos").build();
     }
 
     public Flux<Veiculo> listarVeiculos() {

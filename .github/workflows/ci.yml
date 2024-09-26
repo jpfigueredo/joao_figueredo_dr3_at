@@ -27,10 +27,3 @@ jobs:
       # Executar os testes
       - name: Run tests
         run: mvn test
-
-      # Publicar artefatos (opcional)
-      - name: Upload Maven artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: maven-artifacts
-          path: target/*.jar

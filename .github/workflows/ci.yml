@@ -20,10 +20,38 @@ jobs:
         with:
           java-version: '11'
 
-      # Instalar dependências e compilar o projeto
-      - name: Build with Maven
+      # Build eureka-service
+      - name: Build eureka-service with Maven
+        working-directory: ./eureka-service
         run: mvn install -DskipTests
 
-      # Executar os testes
-      - name: Run tests
+      - name: Test eureka-service with Maven
+        working-directory: ./eureka-service
+        run: mvn test
+
+      # Build imovel-service
+      - name: Build imovel-service with Maven
+        working-directory: ./imovel-service
+        run: mvn install -DskipTests
+
+      - name: Test imovel-service with Maven
+        working-directory: ./imovel-service
+        run: mvn test
+
+      # Build status-service
+      - name: Build status-service with Maven
+        working-directory: ./status-service
+        run: mvn install -DskipTests
+
+      - name: Test status-service with Maven
+        working-directory: ./status-service
+        run: mvn test
+
+      # Build veiculo-service
+      - name: Build veiculo-service with Maven
+        working-directory: ./veiculo-service
+        run: mvn install -DskipTests
+
+      - name: Test veiculo-service with Maven
+        working-directory: ./veiculo-service
         run: mvn test

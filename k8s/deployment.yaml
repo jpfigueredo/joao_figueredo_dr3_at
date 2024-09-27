@@ -16,7 +16,7 @@ spec:
         - name: eureka-service
           image: joaofigueredo/eureka-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8761
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -56,7 +56,7 @@ spec:
         - name: status-service
           image: joaofigueredo/status-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -76,4 +76,4 @@ spec:
         - name: veiculo-service
           image: joaofigueredo/veiculo-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8082

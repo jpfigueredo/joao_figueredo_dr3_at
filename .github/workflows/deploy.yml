@@ -33,11 +33,43 @@ jobs:
           docker-compose -f compose/docker-compose.yml build
           docker-compose -f compose/docker-compose.yml push
 
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v1
-        with:
-          version: 'latest'
+      - name: Set up Minikube
+        run: |
+          curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+          sudo install minikube /usr/local/bin/
+
+      - name: Start Minikube
+        run: |
+          minikube start --driver=docker
+
+      - name: Use Minikube Docker Daemon
+        run: |
+          eval $(minikube -p minikube docker-env)
 
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/deployment.yaml
+
+#      # Autenticação no GCP
+#      - name: Authenticate to Google Cloud
+#        uses: google-github-actions/auth@v1
+#        with:
+#          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+#
+#      # Configurar o projeto e o cluster do GCP
+#      - name: Set up GCloud SDK
+#        uses: google-github-actions/setup-gcloud@v1
+#        with:
+#          project_id: your-gcp-project-id
+#          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+#
+#      # Configurar o kubectl para se conectar ao cluster do GKE
+#      - name: Get GKE credentials
+#        run: |
+#          gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone --project your-gcp-project-id
+#
+#      # Deploy no cluster Kubernetes
+#      - name: Deploy to GKE
+#        run: |
+#          kubectl apply -f k8s/deployment.yaml
+#          kubectl apply -f k8s/service.yaml

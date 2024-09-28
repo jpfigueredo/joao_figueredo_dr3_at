@@ -35,7 +35,7 @@ public class VeiculoControllerClientTest {
         Mockito.when(veiculoWebClient.getVeiculoPorTipoVeiculo(anyString())).thenReturn(listaVeiculos);
         webTestClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("/api/veiculos")
+                        .path("/api/client/veiculos")
                         .queryParam("tipoVeiculo", "271")
                         .build())
                 .exchange()

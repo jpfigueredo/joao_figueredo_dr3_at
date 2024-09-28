@@ -1,16 +1,22 @@
 spring:
   r2dbc:
     url: r2dbc:h2:mem:///imovelDB
-    username: sa
+    username:
     password:
   h2:
     console:
       enabled: true
+      path: /h2-console
   application:
     name: imovel-service
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     service-url:
+      #      defaultZone: http://eureka-server:8761/eureka/
       defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
 server:
-  port: 8080
+  port: 8082

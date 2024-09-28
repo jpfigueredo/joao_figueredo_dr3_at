@@ -49,27 +49,3 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/deployment.yaml
-
-#      # Autenticação no GCP
-#      - name: Authenticate to Google Cloud
-#        uses: google-github-actions/auth@v1
-#        with:
-#          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
-#
-#      # Configurar o projeto e o cluster do GCP
-#      - name: Set up GCloud SDK
-#        uses: google-github-actions/setup-gcloud@v1
-#        with:
-#          project_id: your-gcp-project-id
-#          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-#
-#      # Configurar o kubectl para se conectar ao cluster do GKE
-#      - name: Get GKE credentials
-#        run: |
-#          gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone --project your-gcp-project-id
-#
-#      # Deploy no cluster Kubernetes
-#      - name: Deploy to GKE
-#        run: |
-#          kubectl apply -f k8s/deployment.yaml
-#          kubectl apply -f k8s/service.yaml

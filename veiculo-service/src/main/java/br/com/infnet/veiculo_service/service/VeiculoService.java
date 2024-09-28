@@ -22,4 +22,17 @@ public class VeiculoService {
         return veiculoRepository.save(veiculo);
     }
 
+    public Mono<Void> remover(Veiculo veiculo) {
+        return veiculoRepository.delete(veiculo);
+    }
+
+    public Mono<Veiculo> atualizar(Veiculo veiculo, Long id) throws Exception {
+        Mono<Veiculo> veiculoEncontrado = veiculoRepository.findById(id);
+        if(veiculoEncontrado != null) {
+            veiculo.setId(id);
+        }else{
+            throw new Exception("Veiculo não encontrado.");
+        }
+        return veiculoRepository.save(veiculo);
+    }
 }

@@ -8,7 +8,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @Entity
-@Table("Veiculo")
 @NoArgsConstructor
 public class Veiculo {
     @Id
